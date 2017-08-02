@@ -14,6 +14,10 @@
   <strong>Required skills:</strong>
 </p>
 
+<%= image_tag @project.image.url(:thumb) %>
+
+<br/>
+
 <% project_skills(@project.id).each do |skill| %>
   <p>
     <%= skill.description %>
