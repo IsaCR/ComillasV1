@@ -158,12 +158,18 @@
             <!-- /input-group -->
           </li>
           <% if user_signed_in? %>
-            <li>
-              <a href="projects"><i class="fa fa-dashboard fa-fw"></i> My Projects</a>
-            </li>
-            <li>
-              <a href="portfolios"><i class="fa fa-table fa-fw"></i> My portafolio</a>
-            </li>
+            <% if current_user.is_student? %>
+              <li>
+                <a href="projects"><i class="fa fa-dashboard fa-fw"></i>Available Projects</a>
+              </li>
+              <li>
+                <a href="portfolios"><i class="fa fa-table fa-fw"></i> My portafolio</a>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to 'My Projects', my_projects_path %>
+              </li>
+            <% end %>
           <% end %>
           <li>
             <a href="#"><i class="fa fa-edit fa-fw"></i> Contact support</a>

@@ -11,14 +11,14 @@
 </p>
 
 <p>
-  <strong>Is active:</strong>
-  <%= @project.is_active %>
+  <strong>Required skills:</strong>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @project.user_id %>
-</p>
+<% project_skills(@project.id).each do |skill| %>
+  <p>
+    <%= skill.description %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

@@ -16,19 +16,26 @@
     <%= f.text_field :title %>
   </div>
 
+  <br/>
+
   <div class="field">
     <%= f.label :description %>
-    <%= f.text_field :description %>
+    <br/>
+    <%= f.text_area :description %>
   </div>
 
   <div class="field">
-    <%= f.label :is_active %>
-    <%= f.check_box :is_active %>
+    <%= f.label :is_active, style: 'visibility: hidden' %>
+    <%= f.check_box :is_active, style: 'visibility: hidden', checked: true %>
+  </div>
+
+  <div>
+    <%= f.collection_check_boxes(:skill_ids, Skill.all, :id, :description) %>
   </div>
 
   <div class="field">
-    <%= f.label :user_id %>
-    <%= f.number_field :user_id %>
+    <%= f.label :user_id, style: 'visibility: hidden'%>
+    <%= f.number_field :user_id, value: current_user.id, style: 'visibility: hidden'%>
   </div>
 
   <div class="actions">
