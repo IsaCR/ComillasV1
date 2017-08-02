@@ -61,6 +61,12 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # GET /my_projects
+  def my_projects
+    @projects = Project.where(user_id: current_user.id)
+    render :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
@@ -69,6 +75,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:title, :description, :is_active, :user_id)
+      params.require(:project).permit(:title, :description, :is_active, :user_id, skill_ids: [])
     end
 end

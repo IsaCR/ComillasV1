@@ -22,8 +22,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :user_id %>
-    <%= f.number_field :user_id %>
+    <%= f.label :user_id, style: 'visibility: hidden'%>
+    <%= f.number_field :user_id, value: current_user.id, style: 'visibility: hidden'%>
   </div>
 
   <div class="actions">
