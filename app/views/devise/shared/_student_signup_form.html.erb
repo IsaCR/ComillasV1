@@ -40,6 +40,15 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <br/>
+
+  <div class="field">
+    <%= f.label 'Profile picture'%><br />
+    <%= f.file_field :avatar %>
+  </div>
+
+  <br/>
+
   <% if type_of_user == 'student' %>
     <div>
       <%= f.collection_check_boxes(:skill_ids, Skill.all, :id, :description) %>

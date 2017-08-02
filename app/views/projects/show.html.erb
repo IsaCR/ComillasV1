@@ -20,5 +20,11 @@
   </p>
 <% end %>
 
+<br/>
+
+<%= image_tag @project.image.url(:thumb) %>
+
+<br/>
+
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

@@ -24,6 +24,12 @@
     <%= f.text_area :description %>
   </div>
 
+  <br/>
+  <div class="field">
+    <%= f.label 'Attach an image'%><br />
+    <%= f.file_field :image %>
+  </div>
+
   <div class="field">
     <%= f.label :is_active, style: 'visibility: hidden' %>
     <%= f.check_box :is_active, style: 'visibility: hidden', checked: true %>

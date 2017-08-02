@@ -9,11 +9,29 @@ class ApplicationController < ActionController::Base
 	  end
 
 	  devise_parameter_sanitizer.permit(:sign_up) do |user_params|
-	    user_params.permit(:username, :email, :name, :lastname, :is_admin, :is_student, :password, skill_ids: [])
+	    user_params.permit(:username,
+												 :email,
+												 :name,
+												 :lastname,
+												 :is_admin,
+												 :is_student,
+												 :password,
+												 :avatar,
+												 skill_ids: []
+			)
 	  end
 
 	  devise_parameter_sanitizer.permit(:account_update) do |user_params|
-	    user_params.permit(:username, :email, :name, :lastname, :is_admin, :is_student, :current_password, skill_ids: [])
+	    user_params.permit(:username,
+												 :email,
+												 :name,
+												 :lastname,
+												 :is_admin,
+												 :is_student,
+												 :current_password,
+												 :avatar,
+												 skill_ids: [],
+			)
 	  end
   end
 end
