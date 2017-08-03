@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :skills
   resources :portfolios
   resources :projects
-  get 'my_projects' => 'projects#my_projects'
   devise_for :users
   devise_scope :user do
     get 'users/sign_out' => "devise/sessions#destroy"

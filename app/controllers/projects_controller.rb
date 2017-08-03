@@ -4,7 +4,12 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    if current_user.is_student?
+      @projects = order_projects.map { |k| k[:project] }
+    else
+      @projects = Project.where(user_id: current_user.id)
+    end
+    render :index
   end
 
   # GET /projects/1
@@ -61,12 +66,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # GET /my_projects
-  def my_projects
-    @projects = Project.where(user_id: current_user.id)
-    render :index
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
@@ -83,4 +82,20 @@ class ProjectsController < ApplicationController
                                       skill_ids: []
       )
     end
+
+  def active_projects
+    Project.where(is_active: true)
+  end
+
+  def order_projects
+    order_projects = []
+    active_projects.each do |project|
+      matching_skills = (project.skills & current_user.skills).count
+      order_projects << {
+        matching_porcentage: matching_skills * 100 / project.skills.count,
+        project: project
+      }
+    end
+    order_projects.sort_by! { |k| k[:matching_porcentage] * -1}
+  end
 end
