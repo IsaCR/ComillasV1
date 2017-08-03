@@ -1,25 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<h2>Projects</h2>
+<h2>Students</h2>
 
-<%= link_to 'New Project', new_project_path %>
 <hr>
 
 <div class="row">
-  <% @projects.each do |project| %>
+  <%  @users.each do |user| %>
     <div class="col-md-4 portfolio-item">
       <a href="#">
-        <% if project.image.present? %>
-          <%= image_tag project.image.url(:thumb), class:'img-responsive' %>
+        <% if user.avatar.present? %>
+          <%= image_tag user.avatar.url(:medium), class:'img-responsive' %>
         <% else %>
           <img class="img-responsive" src="http://placehold.it/750x450" alt="">
         <% end %>
       </a>
       <h3>
-        <%= link_to project.title, project %>
+        <%= user.name + " " + user.lastname %>
       </h3>
       <p>
-        <%= project.description %>
+        <strong>
+          Skills
+        </strong>
+      </p>
+      <p>
+        <%= get_skills(user) %>
       </p>
     </div>
   <% end %>

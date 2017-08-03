@@ -33,5 +33,13 @@ class ApplicationController < ActionController::Base
 												 skill_ids: [],
 			)
 	  end
-  end
+	end
+
+	def after_sign_in_path_for(resource)
+		if current_user.is_student?
+			projects_path
+		else
+			students_path
+		end
+	end
 end
