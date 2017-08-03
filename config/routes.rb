@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   root 'projects#index'
-  resources :user_skills
   resources :skills
   resources :portfolios
   resources :projects
+  get 'students' => 'users#get_students'
   devise_for :users
   devise_scope :user do
     get 'users/sign_out' => "devise/sessions#destroy"
