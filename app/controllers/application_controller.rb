@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+	helper_method :mailbox, :conversation
+
   def configure_permitted_parameters
 	  devise_parameter_sanitizer.permit(:sign_in) do |user_params|
 	    user_params.permit(:username, :email)
@@ -41,5 +43,15 @@ class ApplicationController < ActionController::Base
 		else
 			students_path
 		end
+	end
+
+	private
+
+	def mailbox
+		@mailbox ||= current_user.mailbox
+	end
+
+	def conversation
+		@conversation ||= mailbox.conversations.find(params[:id])
 	end
 end
