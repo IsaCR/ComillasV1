@@ -16,4 +16,14 @@ class User < ApplicationRecord
   validates_attachment_content_type :avatar,
                                     size: { :in => 0..10.megabytes },
                                     content_type: ["image/jpeg", "image/gif", "image/png","image/jpg"]
+
+  acts_as_messageable
+
+  def mailboxer_name
+    self.name
+  end
+
+  def mailboxer_email(object)
+    self.email
+  end
 end
