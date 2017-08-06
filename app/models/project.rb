@@ -2,6 +2,8 @@ class Project < ApplicationRecord
 	belongs_to :user
 	has_and_belongs_to_many :skills
 
+	serialize :interested_students
+
 	has_attached_file :image,
 										styles: { thumb: "300x300>",
 															medium: "700x400>" },
