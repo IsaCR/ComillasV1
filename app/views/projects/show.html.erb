@@ -28,10 +28,40 @@
 
 <% if current_user.is_student? %>
   <%= link_to 'Apply', apply_path(p_id: @project) %> |
-<% end %>
-
-<% if @project.user_id == current_user.id %>
+<% else %>
   <%= link_to 'Edit', edit_project_path(@project) %> |
 <% end %>
 
 <%= link_to 'Back', projects_path %>
+
+<br/>
+<hr/>
+<% if @project.user_id == current_user.id && @project.interested_students.present? %>
+  <h2>Interested students</h2>
+  <br/>
+  <div class="row">
+    <% interested_students(@project.interested_students).each do |student| %>
+      <div class="col-md-4 portfolio-item">
+        <a href="#">
+          <% if student.avatar.present? %>
+            <%= image_tag student.avatar.url(:medium), class:'img-responsive' %>
+          <% else %>
+            <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+          <% end %>
+        </a>
+        <h3>
+          <%= student.name + " " + student.lastname %>
+        </h3>
+        <p>
+          <strong>
+            Skills
+          </strong>
+        </p>
+        <p>
+          <%= get_skills(student) %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+

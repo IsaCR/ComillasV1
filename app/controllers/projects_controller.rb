@@ -80,6 +80,7 @@ class ProjectsController < ApplicationController
                                       :user_id,
                                       :image,
                                       :student_id,
+                                      :interested_students,
                                       skill_ids: []
       )
     end

@@ -37,7 +37,9 @@ class ConversationsController < ApplicationController
   # GET /apply
   def apply
     if params[:p_id].present?
-      @recipient = Project.find(params[:p_id]).user
+      project = Project.find(params[:p_id])
+      save_interested_students project
+      @recipient = project.user
     else
       redirect_to root_path
     end
@@ -51,5 +53,12 @@ class ConversationsController < ApplicationController
 
   def message_params
     params.require(:message).permit(:body, :subject)
+  end
+
+  def save_interested_students project
+    project.interested_students ||= []
+    project.interested_students << current_user.id
+    project.interested_students.uniq!
+    project.save
   end
 end
