@@ -34,6 +34,15 @@ class ConversationsController < ApplicationController
     redirect_to mailbox_inbox_path
   end
 
+  # GET /apply
+  def apply
+    if params[:p_id].present?
+      @recipient = Project.find(params[:p_id]).user
+    else
+      redirect_to root_path
+    end
+  end
+
   private
 
   def conversation_params

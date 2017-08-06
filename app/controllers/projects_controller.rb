@@ -76,15 +76,16 @@ class ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit(:title,
                                       :description,
-                                      :is_active,
+                                      :in_progress,
                                       :user_id,
                                       :image,
+                                      :student_id,
                                       skill_ids: []
       )
     end
 
   def active_projects
-    Project.where(is_active: true)
+    Project.where(in_progress: nil, student_id: nil)
   end
 
   def order_projects

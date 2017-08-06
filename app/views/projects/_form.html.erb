@@ -30,11 +30,6 @@
     <%= f.file_field :image %>
   </div>
 
-  <div class="field">
-    <%= f.label :is_active, style: 'visibility: hidden' %>
-    <%= f.check_box :is_active, style: 'visibility: hidden', checked: true %>
-  </div>
-
   <div>
     <%= f.collection_check_boxes(:skill_ids, Skill.all, :id, :description) %>
   </div>
