@@ -4,8 +4,12 @@ Rails.application.routes.draw do
   resources :portfolios
   resources :projects
   get 'students' => 'users#get_students'
-  devise_for :users
+  get 'user' => 'users#show'
+  devise_for :users, controllers: {
+                     registrations: 'users/registrations'
+                   }
   devise_scope :user do
+    get 'signup_as' => 'users/registrations#signup_as'
     get 'users/sign_out' => 'devise/sessions#destroy'
     get 'users' => 'projects#index'
   end
