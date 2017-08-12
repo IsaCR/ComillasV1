@@ -10,7 +10,9 @@
     <% end %>
   </div>
   <div class="form-group">
-    <% if @recipient %>
+    <% if @project %>
+      <%= f.text_field :subject, value: "You have been accepted to #{@project.title}", :style => 'visibility: hidden' %>
+    <% elsif @recipient %>
       <%= f.text_field :subject, value: 'Student apply for a position', :style => 'visibility: hidden' %>
     <% else %>
       <%= f.label :subject %>
@@ -19,13 +21,29 @@
   </div>
   <div class="form-group">
     <%= f.label :message %>
-    <% if @recipient %>
-      <%= f.text_area :body, class: 'form-control', value: 'Morning, I would like to apply to this position', rows: 4  %>
+    <% if @project %>
+      <%= f.text_area :body,
+                      class: 'form-control',
+                      value: "You have been accepted to #{@project.title}",
+                      rows: 4,
+                      escape: true %>
+
+      <%= f.text_field :project_id,
+                       value: @project.id,
+                       style: 'visibility: hidden' %>
+
+    <% elsif @recipient %>
+      <%= f.text_area :body, class: 'form-control',
+                      value: 'I would like to apply to this position',
+                      rows: 4  %>
     <% else %>
-      <%= f.text_area :body, class: 'form-control',placeholder: "Type your message here", rows: 4  %>
+      <%= f.text_area :body,
+                      class: 'form-control',
+                      placeholder: "Type your message here",
+                      rows: 4  %>
     <% end %>
   </div>
-  <% if @recipient %>
+  <% if @recipient && @project.nil? %>
     <%= f.submit "Apply", class: "btn btn-success" %>
   <% else %>
     <%= f.submit "Send Message", class: "btn btn-success" %>

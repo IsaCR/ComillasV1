@@ -66,6 +66,16 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def accept_project
+    project = Project.find(params[:p_id])
+    if current_user.is_student && (project.user != current_user)
+      project.student_id = current_user.id
+      project.in_progress = true
+      project.save
+    end
+    redirect_to root_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project

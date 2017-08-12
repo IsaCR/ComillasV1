@@ -3,9 +3,15 @@ class ConversationsController < ApplicationController
   end
 
   def create
+    body = conversation_params[:body]
+
+    if conversation_params[:project_id]
+      body = add_link_to_body(body, conversation_params[:project_id])
+    end
+
     recipients = User.where(id: conversation_params[:recipients])
     conversation = current_user.send_message(recipients,
-                                             conversation_params[:body],
+                                             body,
                                              conversation_params[:subject]
     ).conversation
     flash[:success] = "Your message was successfully sent!"
@@ -45,10 +51,19 @@ class ConversationsController < ApplicationController
     end
   end
 
+  def accept_student
+    if params[:p_id] && params[:u_id]
+      @recipient = User.find(params[:u_id])
+      @project = Project.find(params[:p_id])
+    else
+      redirect_to root_path
+    end
+  end
+
   private
 
   def conversation_params
-    params.require(:conversation).permit(:subject, :body,recipients:[])
+    params.require(:conversation).permit(:subject, :body, :project_id, recipients:[])
   end
 
   def message_params
@@ -60,5 +75,11 @@ class ConversationsController < ApplicationController
     project.interested_students << current_user.id
     project.interested_students.uniq!
     project.save
+  end
+
+  def add_link_to_body(body, p_id)
+    "#{body}.
+    If you are interested please
+    <a href='/accept_project?p_id=#{p_id}'>follow this link</a>"
   end
 end
