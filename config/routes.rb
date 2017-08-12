@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   resources :skills
   resources :portfolios
   resources :projects
-  get 'students' => 'users#get_students'
-  get 'user' => 'users#show'
+
+  # devise routes
   devise_for :users, controllers: {
                      registrations: 'users/registrations'
                    }
@@ -30,4 +30,8 @@ Rails.application.routes.draw do
   end
 
   get 'apply' => 'conversations#apply'
+  get 'accept_student' => 'conversations#accept_student'
+  get 'accept_project' => 'projects#accept_project'
+  get 'students' => 'users#get_students'
+  get 'user' => 'users#show'
 end
