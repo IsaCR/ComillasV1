@@ -2,11 +2,15 @@
 
 <div class="o-signup-form-labels eo-tabset">
   <ul class="nav nav-tabs nav-justified">
-    <li role="presentation"><a href="#">Company SignUp</a></li>
-    <li role="presentation"><a href="#">Student SingUp</a></li>
+    <li role="presentation">
+      <%= link_to 'Company SignUp', signup_as_path(singup_as: 'company') %>
+    </li>
+    <li role="presentation">
+      <%= link_to 'Student SingUp', signup_as_path(singup_as: 'student' ) %>
+    </li>
   </ul>
 </div>
 
-<%= render "devise/shared/student_signup_form", type_of_user: 'student' %>
+<%= render 'devise/shared/student_signup_form', type_of_user: params[:type_of_user] %>
 
-<%= render "devise/shared/links" %>
+<%= render 'devise/shared/links' %>
