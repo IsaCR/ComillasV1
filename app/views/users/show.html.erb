@@ -1,0 +1,45 @@
+<% if @project.present? %>
+  <div>
+    <%= link_to 'Back', @project %>
+    <%= link_to 'Accept this student', '#', class: 'btn btn-info' %>
+  </div>
+<% else %>
+  <%= link_to 'Back', root_path %>
+<% end %>
+
+<br/>
+
+<% if @user.avatar.present? %>
+  <%= image_tag(@user.avatar.url(:medium), class:'img-responsive')%>
+<% else %>
+  <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+<% end %>
+<h3>
+  <%= @user.name + " " + @user.lastname %>
+</h3>
+<p>
+  <strong>
+    Skills
+  </strong>
+</p>
+<p>
+  <%= get_skills(@user) %>
+</p>
+
+<hr>
+<% if @user.portfolios.present? %>
+  <h2>Student portfolio</h2>
+  <br/>
+  <div class="row">
+    <% @user.portfolios.each do |portfolio| %>
+      <div class="col-md-4 portfolio-item">
+        <h3>
+          <%= link_to portfolio.title, portfolio %>
+        </h3>
+        <p>
+          <%= portfolio.description %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+<% end %>
