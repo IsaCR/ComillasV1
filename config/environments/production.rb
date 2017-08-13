@@ -81,18 +81,15 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
-  config.action_mailer.default_url_options = { :host => 'comillasv1.heroku.com' }
-
-
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  # config.action_mailer.default_url_options = {:host => 'yourdomain.com'}
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   :address => "127.0.0.1",
-  #   :port    => 25,
-  #   :domain  => 'yourdomain.com'
-  # }
+  config.action_mailer.default_url_options = { :host => 'comillasv1.heroku.com' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => "127.0.0.1",
+    :port    => 25,
+    :domain  => 'comillasv1.heroku.com'
+  }
   # config.assets.compile = true
 end
