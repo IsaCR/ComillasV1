@@ -4,7 +4,7 @@
     <%= link_to 'Accept this student', accept_student_path(p_id: @project.id, u_id: @user.id), class: 'btn btn-info' %>
   </div>
 <% else %>
-  <%= link_to 'Back', root_path %>
+  <%= link_to 'Back', students_path %>
 <% end %>
 
 <br/>
