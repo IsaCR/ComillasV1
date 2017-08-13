@@ -20,7 +20,9 @@
       <%= f.label 'Company name' %><br />
       <%= f.text_field :name %>
     </div>
-  <% end %><br />
+  <% end %>
+
+  <br />
 
   <div class="field">
     <%= f.label :email %><br />
@@ -53,7 +55,9 @@
     <div>
       <%= f.collection_check_boxes(:skill_ids, Skill.all, :id, :description) %>
     </div>
-  <% end %><br />
+  <% end %>
+
+  <br />
 
   <div class="actions">
     <%= f.submit "Sign up" %>
