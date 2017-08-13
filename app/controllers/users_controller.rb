@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:p_id])
-    @user = User.find(params[:u_id])
+    @project = Project.find(params[:p_id]) if params[:p_id]
+    @user = User.find(params[:u_id]) if params[:u_id]
   end
 end
