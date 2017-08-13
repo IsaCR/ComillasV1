@@ -85,11 +85,25 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.default_url_options = { :host => 'comillasv1.heroku.com' }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :address => "127.0.0.1",
-    :port    => 25,
-    :domain  => 'comillasv1.heroku.com'
+  #config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {
+  #  :address => "127.0.0.1",
+  #  :port    => 25,
+  #  :domain  => 'comillasv1.heroku.com'
+  #}
+
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'comillasv1.heroku.com',
+    #user_name:            ENV["GMAIL_USERNAME"],
+    #password:             ENV["GMAIL_PASSWORD"],
+    user_name:            'isagonzacr@gmail.com',
+    password:             'octavito84',
+    authentication:       'plain',
+    enable_starttls_auto: true
   }
+
   # config.assets.compile = true
 end
