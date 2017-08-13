@@ -27,6 +27,13 @@
 </p>
 
 <hr>
+
+Accuracy <%= rating_for @user, 'accuracy', disable_after_rate: true %>
+Quality <%= rating_for @user, 'quality_of_coding', disable_after_rate: false %>
+Communication <%= rating_for @user, 'communication', disable_after_rate: true%>
+Timing <%= rating_for @user, 'timing', disable_after_rate: true%>
+
+<hr>
 <% if @user.portfolios.present? %>
   <h2>Student portfolio</h2>
   <br/>
