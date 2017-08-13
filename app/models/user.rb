@@ -19,6 +19,10 @@ class User < ApplicationRecord
 
   acts_as_messageable
 
+  ratyrate_rateable 'accuracy', 'quality_of_coding', 'communication', 'timing'
+
+  ratyrate_rater
+
   def mailboxer_name
     self.name
   end
