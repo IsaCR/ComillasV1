@@ -28,11 +28,13 @@
 
 <% if current_user.is_student? %>
   <%= link_to 'Apply', apply_path(p_id: @project) %> |
-<% else %>
+<% elsif @project.in_progress && @project.student_id %>
+  <%= link_to 'Conclude project', conclude_project_path(p_id: @project.id) %> |
+<% elsif @project.in_progress.nil? %>
   <%= link_to 'Edit', edit_project_path(@project) %> |
 <% end %>
 
-<%= link_to 'Back', projects_path %>
+<%= link_to 'Back', :back %>
 
 <br/>
 <hr/>

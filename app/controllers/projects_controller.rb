@@ -7,9 +7,8 @@ class ProjectsController < ApplicationController
     if current_user.is_student?
       @projects = order_projects.map { |k| k[:project] }
     else
-      @projects = Project.where(user_id: current_user.id)
+      @projects = projects_by_type(params[:type])
     end
-    render :index
   end
 
   # GET /projects/1
@@ -76,6 +75,22 @@ class ProjectsController < ApplicationController
     redirect_to root_path
   end
 
+  def conclude_project
+    project = current_user.projects.find(params[:p_id])
+    project.in_progress = false
+    project.save
+
+    if project.portfolio.nil?
+      Portfolio.create(title: project.title,
+                       description: project.description,
+                       user_id: project.student_id,
+                       project_id: project.id
+      )
+    end
+
+    redirect_to projects_path(type: 'finished')
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
@@ -109,5 +124,19 @@ class ProjectsController < ApplicationController
       }
     end
     order_projects.sort_by! { |k| k[:matching_porcentage] * -1}
+  end
+
+
+  def projects_by_type(type)
+    case type
+    when 'available'
+      current_user.projects.where(in_progress: nil, student_id: nil)
+    when 'current'
+      current_user.projects.where(in_progress: true).where.not(student_id: nil)
+    when 'finished'
+      current_user.projects.where(in_progress: false).where.not(student_id: nil)
+    else
+      current_user.projects
+    end
   end
 end
