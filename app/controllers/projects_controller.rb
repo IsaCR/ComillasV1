@@ -117,6 +117,7 @@ class ProjectsController < ApplicationController
   def order_projects
     order_projects = []
     active_projects.each do |project|
+      next if project.skills.count <= 0
       matching_skills = (project.skills & current_user.skills).count
       order_projects << {
         matching_porcentage: matching_skills * 100 / project.skills.count,
