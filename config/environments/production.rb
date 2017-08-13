@@ -81,6 +81,9 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  config.action_mailer.default_url_options = { :host => 'comillasv1.heroku.com' }
+
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
@@ -91,4 +94,5 @@ Rails.application.configure do
   #   :port    => 25,
   #   :domain  => 'yourdomain.com'
   # }
+  # config.assets.compile = true
 end
