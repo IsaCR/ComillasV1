@@ -4,7 +4,11 @@ class PortfoliosController < ApplicationController
   # GET /portfolios
   # GET /portfolios.json
   def index
-    @portfolios = Portfolio.all
+    if current_user.is_student?
+      @portfolios = current_user.portfolios
+    else
+      redirect_to root_path
+    end
   end
 
   # GET /portfolios/1
@@ -69,6 +73,6 @@ class PortfoliosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def portfolio_params
-      params.require(:portfolio).permit(:title, :description, :user_id)
+      params.require(:portfolio).permit(:title, :description, :user_id, :project_id)
     end
 end

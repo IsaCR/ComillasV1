@@ -98,7 +98,20 @@
                 <a href="/students"><i class="fa fa-dashboard fa-fw"></i>Available students</a>
               </li>
               <li>
-                <%= link_to 'My Projects', projects_path %>
+                <a data-toggle="collapse" href="#collapse1"> My Projects<span class="fa arrow"></span></a>
+                <ul id="collapse1" class="nav nav-second-level panel-collapse collapse">
+                  <li>
+                    <%= link_to 'Available Projects', projects_path(type: 'available') %>
+                  </li>
+                  <li>
+                    <%= link_to 'Current Projects', projects_path(type: 'current') %>
+                  </li>
+                  <li>
+                    <%= link_to 'Finished Projects', projects_path(type: 'finished') %>
+                  </li>
+                </ul>
+                <!-- /.nav-second-level -->
+              </li>
               </li>
             <% end %>
           <% end %>

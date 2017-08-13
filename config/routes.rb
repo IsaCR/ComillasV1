@@ -34,4 +34,5 @@ Rails.application.routes.draw do
   get 'accept_project' => 'projects#accept_project'
   get 'students' => 'users#get_students'
   get 'user' => 'users#show'
+  get 'conclude_project' => 'projects#conclude_project'
 end
