@@ -89,14 +89,14 @@ Rails.application.configure do
   #config.action_mailer.smtp_settings = {
   #  :address => "127.0.0.1",
   #  :port    => 25,
-  #  :domain  => 'comillasv1.herokuapp'
+  #  :domain  => 'comillasv1.heroku.com'
   #}
 
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
-    domain:               'comillasv1.herokuapp',
+    domain:               'comillasv1.herokuapp.com',
     #user_name:            ENV["GMAIL_USERNAME"],
     #password:             ENV["GMAIL_PASSWORD"],
     user_name:            'isagonzacr@gmail.com',
