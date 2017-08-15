@@ -90,12 +90,13 @@ Rails.application.configure do
 
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-    address:              'smtp.gmail.com',
-  port:                   587,
+    address:              'mail.codehardware.com',
+    port:                  25,
     domain:               'comillasv1.herokuapp.com',
-    user_name:            'isagonzacr@gmail.com',
-    password:             'octavito84',
+    user_name:            ENV['USER_NAME'],
+    password:             ENV['EMAIL_PASSWORD'],
     authentication:       'plain',
-    enable_starttls_auto: true
+    openssl_verify_mode:  'none'
+    # enable_starttls_auto: true
   }
 end
