@@ -1,0 +1,29 @@
+<div class="row">
+  <% @result.each do |user| %>
+    <div class="col-md-4 portfolio-item">
+      <a href="#">
+        <% if user.avatar.present? %>
+          <%= link_to(image_tag(user.avatar.url(:medium), class:'img-responsive' ),user_path(u_id: user)) %>
+        <% else %>
+          <%= link_to(image_tag("http://placehold.it/750x450", class: "img-responsive"),  user_path(u_id: user))%>
+        <% end %>
+      </a>
+      <h3>
+        <% if user.is_student? %>
+          <%= user.name + " " + user.lastname %>
+        <% else %>
+          <%= user.name %>
+        <% end %>
+      </h3>
+      <p>
+        <strong>
+          Skills
+        </strong>
+      </p>
+      <p>
+        <%= get_skills(user) %>
+      </p>
+      <%= link_to 'Contact this student', '#', class: 'btn btn-info' %>
+    </div>
+  <% end %>
+</div>
