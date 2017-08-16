@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :searches
   post '/rate' => 'rater#create', :as => 'rate'
   root 'projects#index'
   resources :skills

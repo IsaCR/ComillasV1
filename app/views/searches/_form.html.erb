@@ -1,0 +1,25 @@
+<h2>Students</h2>
+
+<%= form_tag(searches_path) do %>
+
+  <%= label_tag 'Name' %>
+  <%= text_field_tag :name %>
+
+  <%= label_tag 'Lastname' %>
+  <%= text_field_tag :lastname %>
+
+  <%= label_tag 'Email' %>
+  <%= text_field_tag :email %>
+
+  <hr/>
+  <div>
+    <%= collection_check_boxes :skill,
+                               :ids,
+                               get_skills_for_search,
+                               :id,
+                               :description,
+                               {multiple: true} %>
+  </div>
+  <br/>
+  <%= submit_tag 'Search' %>
+<% end %>
