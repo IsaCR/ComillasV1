@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   def index
     if current_user.is_student?
       @projects = order_projects.map { |k| k[:project] }
+      @projects = @projects.paginate(page: params[:page], per_page: 9)
     else
       @projects = projects_by_type(params[:type])
     end
@@ -117,12 +118,18 @@ class ProjectsController < ApplicationController
   def order_projects
     order_projects = []
     active_projects.each do |project|
-      next if project.skills.count <= 0
-      matching_skills = (project.skills & current_user.skills).count
-      order_projects << {
-        matching_porcentage: matching_skills * 100 / project.skills.count,
-        project: project
-      }
+      if project.skills.count <= 0
+        order_projects << {
+          matching_porcentage: 0,
+          project: project
+        }
+      else
+        matching_skills = (project.skills & current_user.skills).count
+        order_projects << {
+          matching_porcentage: matching_skills * 100 / project.skills.count,
+          project: project
+        }
+      end
     end
     order_projects.sort_by! { |k| k[:matching_porcentage] * -1}
   end
@@ -131,13 +138,13 @@ class ProjectsController < ApplicationController
   def projects_by_type(type)
     case type
     when 'available'
-      current_user.projects.where(in_progress: nil, student_id: nil)
+      current_user.projects.where(in_progress: nil, student_id: nil).paginate(page: params[:page], per_page: 9)
     when 'current'
-      current_user.projects.where(in_progress: true).where.not(student_id: nil)
+      current_user.projects.where(in_progress: true).where.not(student_id: nil).paginate(page: params[:page], per_page: 9)
     when 'finished'
-      current_user.projects.where(in_progress: false).where.not(student_id: nil)
+      current_user.projects.where(in_progress: false).where.not(student_id: nil).paginate(page: params[:page], per_page: 9)
     else
-      current_user.projects
+      current_user.projects.paginate(page: params[:page], per_page: 9)
     end
   end
 end

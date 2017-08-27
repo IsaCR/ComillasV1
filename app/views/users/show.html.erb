@@ -35,10 +35,11 @@ Timing <%= rating_for @user, 'timing', disable_after_rate: true%>
 
 <hr>
 <% if @user.portfolios.present? %>
+  <% portfolios = @user.portfolios.paginate(page: params[:page], per_page: 9) %>
   <h2>Student portfolio</h2>
   <br/>
   <div class="row">
-    <% @user.portfolios.each do |portfolio| %>
+    <% portfolios.each do |portfolio| %>
       <div class="col-md-4 portfolio-item">
         <h3>
           <%= link_to portfolio.title, portfolio %>
@@ -49,4 +50,6 @@ Timing <%= rating_for @user, 'timing', disable_after_rate: true%>
       </div>
     <% end %>
   </div>
+  <hr>
+  <%= will_paginate portfolios %>
 <% end %>

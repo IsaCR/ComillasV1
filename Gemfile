@@ -70,3 +70,5 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
 gem 'chosen-rails'
+
+gem 'will_paginate', '~> 3.1.0'
