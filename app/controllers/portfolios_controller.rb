@@ -12,8 +12,17 @@ class PortfoliosController < ApplicationController
   end
 
   # GET /portfolios/1
-  # GET /portfolios/1.json
+  # GET /portfolios/1.pdf
   def show
+    @portfolio = current_user.portfolios.find params[:id] if current_user.is_student?
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: 'portfolio_file',
+               template: 'portfolios/show.html.erb',
+               locals: {invoice: @portfolio}
+      end
+    end
   end
 
   # GET /portfolios/new
