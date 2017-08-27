@@ -20,3 +20,5 @@ Skill.create([{ description: 'Web services' },
               { description: 'Java' },
               { description: 'Postgres' },
               { description: 'MySQL' }])
+
+WhitelistEmailDomain.create([description: 'est.utn.ac.cr'])

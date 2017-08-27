@@ -1,0 +1,2 @@
+class WhitelistEmailDomain < ApplicationRecord
+end
