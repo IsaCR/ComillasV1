@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     if current_user.is_student?
       redirect_to root_path
     else
-      @users = User.where(is_student: true)
+      @users = User.where(is_student: true).paginate(page: params[:page], per_page: 9)
       render :index
     end
   end

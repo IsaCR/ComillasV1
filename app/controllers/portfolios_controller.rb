@@ -5,7 +5,7 @@ class PortfoliosController < ApplicationController
   # GET /portfolios.json
   def index
     if current_user.is_student?
-      @portfolios = current_user.portfolios
+      @portfolios = current_user.portfolios.paginate(page: params[:page], per_page: 9)
     else
       redirect_to root_path
     end
@@ -14,7 +14,7 @@ class PortfoliosController < ApplicationController
   # GET /portfolios/1
   # GET /portfolios/1.pdf
   def show
-    @portfolio = current_user.portfolios.find params[:id] if current_user.is_student?
+    @portfolio = current_user.portfolios.find(params[:id]) if current_user.is_student?
     respond_to do |format|
       format.html
       format.pdf do
