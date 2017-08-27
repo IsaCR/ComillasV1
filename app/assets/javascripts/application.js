@@ -16,3 +16,5 @@
 //= require_tree .
 //= require jquery.raty
 //= require ratyrate
+//= require chosen-jquery
+//= require conversations
