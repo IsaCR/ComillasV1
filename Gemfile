@@ -68,3 +68,5 @@ gem 'ratyrate'
 
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+
+gem 'chosen-rails'

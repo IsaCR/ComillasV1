@@ -60,6 +60,10 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    chosen-rails (1.5.2)
+      coffee-rails (>= 3.2)
+      railties (>= 3.0)
+      sass-rails (>= 3.2)
     climate_control (0.2.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
@@ -213,6 +217,7 @@ DEPENDENCIES
   aws-sdk (~> 2)
   bootstrap (~> 4.0.0.alpha3)
   byebug
+  chosen-rails
   coffee-rails (~> 4.2)
   devise
   font-awesome-sass (~> 4.7.0)
