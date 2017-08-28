@@ -17,12 +17,6 @@
 
 <hr>
 
-Accuracy  : <%= rating_for @portfolio, 'accuracy', star: 5 %>
-Quality : <%= rating_for @portfolio, 'quality_of_coding', star: 5  %>
-Communication  : <%= rating_for @portfolio, 'communication', star: 5  %>
-Timing  : <%= rating_for @portfolio, 'timing' %>
-
-
 <%= link_to 'Edit', edit_portfolio_path(@portfolio) %> |
 <%= link_to 'Back', :back %>
 | <%= link_to 'Get PDF file', portfolio_path(format: :pdf )%>

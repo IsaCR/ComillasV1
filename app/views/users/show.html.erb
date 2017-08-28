@@ -53,3 +53,13 @@ Timing <%= rating_for @user, 'timing', disable_after_rate: true%>
   <hr>
   <%= will_paginate portfolios %>
 <% end %>
+
+<% if can_rate? @user.id %>
+  <script>
+    $(document).on('turbolinks:load', function(){
+      $(".star").each(function() {
+        $(this).raty('set', {readOnly: true});
+      });
+    });
+  </script>
+<% end %>

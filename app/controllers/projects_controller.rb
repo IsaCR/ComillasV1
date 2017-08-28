@@ -89,7 +89,7 @@ class ProjectsController < ApplicationController
       )
     end
 
-    redirect_to projects_path(type: 'finished')
+    redirect_to user_path(u_id: project.student_id)
   end
 
   private

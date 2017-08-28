@@ -6,4 +6,8 @@ module UsersHelper
     end
     skills.join(', ')
   end
+
+  def can_rate? student_id
+    current_user.projects.where(student_id: student_id, in_progress: 0).empty?
+  end
 end

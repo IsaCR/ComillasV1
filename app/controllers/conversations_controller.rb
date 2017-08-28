@@ -5,8 +5,8 @@ class ConversationsController < ApplicationController
   def create
     body = conversation_params[:body]
 
-    if params[:project_id]
-      body = add_link_to_body(body, params[:project_id])
+    if params[:conversation][:project_id]
+      body = add_link_to_body(body, params[:conversation][:project_id])
     end
 
     recipients = User.where(id: conversation_params[:recipients])
