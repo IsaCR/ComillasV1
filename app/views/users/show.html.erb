@@ -1,4 +1,4 @@
-<% if @project.present? %>
+<% if show_accept_students? %>
   <div>
     <%= link_to 'Back', @project %>
     <%= link_to 'Accept this student', accept_student_path(p_id: @project.id, u_id: @user.id), class: 'btn btn-info' %>

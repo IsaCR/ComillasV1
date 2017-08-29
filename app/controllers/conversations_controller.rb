@@ -5,9 +5,10 @@ class ConversationsController < ApplicationController
   def create
     body = conversation_params[:body]
 
-    if params[:conversation][:project_id]
-      body = add_link_to_body(body, params[:conversation][:project_id])
-    end
+    body = add_project_link_to_body(body, params[:conversation][:project_id])  if params[:conversation][:project_id]
+
+    body = add_student_link_to_body(body, params[:conversation][:user_id]) if params[:conversation][:user_id]
+
 
     recipients = User.where(id: conversation_params[:recipients])
     conversation = current_user.send_message(recipients,
@@ -45,6 +46,7 @@ class ConversationsController < ApplicationController
     if params[:p_id].present?
       project = Project.find(params[:p_id])
       save_interested_students project
+      @applied_project = project
       @recipient = project.user
     else
       redirect_to root_path
@@ -77,9 +79,16 @@ class ConversationsController < ApplicationController
     project.save
   end
 
-  def add_link_to_body(body, p_id)
+  def add_project_link_to_body(body, p_id)
     "#{body}.
     If you are interested please
     <a href='/accept_project?p_id=#{p_id}'>follow this link</a>"
+  end
+
+  def add_student_link_to_body(body, u_id)
+    p_id = params[:conversation][:applied_project_id]
+    "#{body}.
+    You can access the student profile
+    <a href='#{user_path(u_id: u_id, p_id: p_id)}'>following this link</a>"
   end
 end

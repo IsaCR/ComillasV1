@@ -25,7 +25,7 @@
       <p>
         <%= get_skills(user) %>
       </p>
-      <% if project.present? %>
+      <% if show_accept_students? %>
         <%= link_to 'Accept this student', accept_student_path(p_id: project.id, u_id: user.id), class: 'btn btn-info' %>
       <% end %>
     </div>

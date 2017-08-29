@@ -1,11 +1,18 @@
 <div class="row">
   <div class="spacer"></div>
-  <div class="col-md-8 text-right">
+  <div class="col-md-1 text-left">
+    <%= link_to "Back", :back %>
+  </div>
+
+  <div class="col-md-7 text-right">
     <% if conversation.is_trashed?(current_user) %>
-      <%= link_to 'Untrash', untrash_conversation_path(conversation), class: 'btn btn-info', method: :post %>
+      <%= link_to untrash_conversation_path(conversation), method: :post do %>
+        <i class="fa fa-check  fa-2x" aria-hidden="true"></i>
+      <% end %>
     <% else %>
-      <%= link_to 'Move to trash', trash_conversation_path(conversation), class: 'btn btn-danger', method: :post,
-                  data: {confirm: 'Are you sure?'} %>
+      <%= link_to trash_conversation_path(conversation), method: :post, data: {confirm: 'Are you sure?'} do %>
+        <i class="fa fa-trash-o fa-2x"  aria-hidden="true"></i>
+      <% end %>
     <% end %>
   </div>
 

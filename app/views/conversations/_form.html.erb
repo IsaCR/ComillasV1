@@ -38,6 +38,14 @@
       <%= f.text_area :body, class: 'form-control',
                       value: 'I would like to apply to this position',
                       rows: 4  %>
+      <%= f.text_field :user_id,
+                       value: current_user.id,
+                       style: 'visibility: hidden' %>
+
+      <%= f.text_field :applied_project_id,
+                       value: @applied_project.id,
+                       style: 'visibility: hidden' %>
+
     <% else %>
       <%= f.text_area :body,
                       class: 'form-control',

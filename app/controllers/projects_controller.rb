@@ -68,12 +68,15 @@ class ProjectsController < ApplicationController
 
   def accept_project
     project = Project.find(params[:p_id])
-    if current_user.is_student && (project.user != current_user)
+    if project.student_id
+      flash[:error] = "I'm sorryProject has been already assigned"
+    elsif current_user.is_student && (project.user != current_user)
       project.student_id = current_user.id
       project.in_progress = true
       project.save
+      flash[:success] = 'Congratulations! You can start working on this project'
     end
-    redirect_to root_path
+    redirect_to project
   end
 
   def conclude_project

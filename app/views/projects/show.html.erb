@@ -26,11 +26,11 @@
 <% end %>
 <br/>
 
-<% if current_user.is_student? %>
+<% if can_apply? %>
   <%= link_to 'Apply', apply_path(p_id: @project) %> |
-<% elsif @project.in_progress && @project.student_id %>
+<% elsif can_conclude?%>
   <%= link_to 'Conclude project', conclude_project_path(p_id: @project.id) %> |
-<% elsif @project.in_progress.nil? %>
+<% elsif can_edit? %>
   <%= link_to 'Edit', edit_project_path(@project) %> |
 <% end %>
 

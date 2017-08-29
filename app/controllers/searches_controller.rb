@@ -10,6 +10,7 @@ class SearchesController < ApplicationController
     students = students.where('lastname ILIKE ?', "%#{params[:lastname]}%") if params[:lastname].present?
     students = students.where('email ILIKE ?', "%#{params[:email]}%") if params[:email].present?
     @result = order_students students
+    @result = @result.paginate(page: params[:page], per_page: 9)
     render 'index'
   end
 
