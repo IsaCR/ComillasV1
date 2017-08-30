@@ -14,6 +14,6 @@ module UsersHelper
   def show_accept_students?
     @project.present? &&
       !current_user.is_student? &&
-      !@project.in_progress?
+      @project.in_progress.nil?
   end
 end

@@ -13,8 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require chosen-jquery
+//= require conversations
 //= require_tree .
 //= require jquery.raty
 //= require ratyrate
-//= require chosen-jquery
-//= require conversations

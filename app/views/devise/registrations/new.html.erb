@@ -1,16 +1,22 @@
-<h2>Create a Free Client Account</h2>
+<!--<h2>Create a Free Client Account</h2>-->
 
-<div class="o-signup-form-labels eo-tabset">
-  <ul class="nav nav-tabs nav-justified">
-    <li role="presentation">
-      <%= link_to 'Company SignUp', signup_as_path(singup_as: 'company') %>
-    </li>
-    <li role="presentation">
-      <%= link_to 'Student SingUp', signup_as_path(singup_as: 'student' ) %>
-    </li>
-  </ul>
+<div class="col-lg-1  text-left">
 </div>
 
-<%= render 'devise/shared/student_signup_form', type_of_user: params[:type_of_user] %>
+<div class="col-lg-8  text-left">
+  <div class="o-signup-form-labels eo-tabset">
+    <ul class="nav nav-tabs nav-justified">
+      <li class="nav-item">
+        <%= link_to 'Student SingUp', signup_as_path(singup_as: 'student' ), class: "nav-link active", id: "home-tab", role: "tab" %>
+      </li>
+      <li class="nav-item" role="presentation">
+        <%= link_to 'Company SignUp', signup_as_path(singup_as: 'company') %>
+      </li>
+    </ul>
+  </div>
 
-<%= render 'devise/shared/links' %>
+
+  <%= render 'devise/shared/student_signup_form', type_of_user: params[:type_of_user] %>
+
+  <%= render 'devise/shared/links' %>
+</div>
