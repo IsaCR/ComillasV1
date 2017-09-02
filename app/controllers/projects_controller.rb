@@ -6,9 +6,11 @@ class ProjectsController < ApplicationController
   def index
     if current_user.is_student?
       @projects = order_projects.map { |k| k[:project] }
+      flash[:notice] = 'No available projects to show' if @projects.empty?
       @projects = @projects.paginate(page: params[:page], per_page: 9)
     else
       @projects = projects_by_type(params[:type])
+      flash[:notice] = 'No projects to show' if @projects.empty?
     end
   end
 
@@ -69,7 +71,7 @@ class ProjectsController < ApplicationController
   def accept_project
     project = Project.find(params[:p_id])
     if project.student_id
-      flash[:error] = "I'm sorryProject has been already assigned"
+      flash[:notice] = "I'm sorry! Project has been already assigned"
     elsif current_user.is_student && (project.user != current_user)
       project.student_id = current_user.id
       project.in_progress = true
@@ -93,6 +95,12 @@ class ProjectsController < ApplicationController
     end
 
     redirect_to user_path(u_id: project.student_id)
+  end
+
+  def my_current_project
+    @projects = Project.where(in_progress: true, student_id: current_user.id).paginate(page: params[:page], per_page: 9)
+    flash[:notice] = "Your reply message was successfully sent!" if @projects.nil?
+    render 'index'
   end
 
   private

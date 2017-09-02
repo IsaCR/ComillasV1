@@ -1,12 +1,14 @@
 module ProjectsHelper
-  def project_skills id
-    Project.find(id).skills
+  def project_skills project
+    skills = []
+    project.skills.each do |skill|
+      skills << skill.description
+    end
+    skills.join(', ')
   end
 
   def interested_students student_ids
-    student_ids.map do |id|
-      User.find(id)
-    end
+    User.where(id: student_ids)
   end
 
   def can_apply?

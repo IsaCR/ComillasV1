@@ -6,19 +6,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Skill.create([{ description: 'Web services' },
-              { description: "API's" },
-              { description: 'HTML' },
-              { description: 'CSS' },
-              { description: 'HTML 5' },
-              { description: 'PHP' },
-              { description: 'RUBY' },
-              { description: 'Rails' },
-              { description: 'Laravel' },
-              { description: '.Net' },
-              { description: 'C#' },
-              { description: 'Java' },
-              { description: 'Postgres' },
-              { description: 'MySQL' }])
+if (Skill.all.empty?)
+  Skill.create([{ description: 'Web services' },
+                { description: "API's" },
+                { description: 'HTML' },
+                { description: 'CSS' },
+                { description: 'HTML 5' },
+                { description: 'PHP' },
+                { description: 'RUBY' },
+                { description: 'Rails' },
+                { description: 'Laravel' },
+                { description: '.Net' },
+                { description: 'C#' },
+                { description: 'Java' },
+                { description: 'Postgres' },
+                { description: 'MySQL' }])
+end
 
 WhitelistEmailDomain.create([description: 'est.utn.ac.cr'])

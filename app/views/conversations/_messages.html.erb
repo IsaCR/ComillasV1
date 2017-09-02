@@ -1,11 +1,12 @@
 <% @receipts.each do |receipt| %>
   <% message = receipt.message %>
   <div class="media">
-    <div class="media-left">
-      <!-- user avators can go here -->
-      <a href="#">
+    <div class="media-left message-avatar">
+      <% if conversation.originator.avatar.present? %>
+        <%=  image_tag conversation.originator.avatar.url(:thumb) %>
+      <% else %>
         <img class="media-object" src="http://placehold.it/64x64" alt="...">
-      </a>
+      <% end %>
     </div>
     <div class="media-body">
       <h4 class="media-heading">

@@ -2,16 +2,18 @@
 
 <%= form_tag(searches_path) do %>
 
-  <%= label_tag 'Name' %>
-  <%= text_field_tag :name %>
+  <%= label_tag '',  'Name', class: 'search-label-fields' %>
+  <%= text_field_tag :name, '', class: 'search-text-fields' %>
 
-  <%= label_tag 'Lastname' %>
-  <%= text_field_tag :lastname %>
-
-  <%= label_tag 'Email' %>
-  <%= text_field_tag :email %>
+  <%= label_tag '',  'Lastname', class: 'search-label-fields' %>
+  <%= text_field_tag :lastname, '', class: 'search-text-fields' %>
+  <br/>
+  <br/>
+  <%= label_tag '', 'Email', class: 'search-label-fields' %>
+  <%= text_field_tag :email, '', class: 'search-text-fields' %>
 
   <hr/>
+  <strong>Skills: </strong>
   <div>
     <%= collection_check_boxes :skill,
                                :ids,
@@ -21,5 +23,6 @@
                                {multiple: true} %>
   </div>
   <br/>
-  <%= submit_tag 'Search' %>
+  <%= submit_tag 'Search', class: 'btn btn-primary' %>
+  <br/>
 <% end %>

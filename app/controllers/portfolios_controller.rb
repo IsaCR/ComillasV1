@@ -6,6 +6,15 @@ class PortfoliosController < ApplicationController
   def index
     if current_user.is_student?
       @portfolios = current_user.portfolios.paginate(page: params[:page], per_page: 9)
+      respond_to do |format|
+        format.html
+        format.pdf do
+          @portfolios = current_user.portfolios.order('created_at DESC')
+          render pdf: 'portfolio_file',
+                 template: 'portfolios/portfolio_pdf.html.erb',
+                 locals: {invoice: @portfolios}
+        end
+      end
     else
       redirect_to root_path
     end
@@ -18,9 +27,10 @@ class PortfoliosController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
+        @portfolios =Array(@portfolio)
         render pdf: 'portfolio_file',
-               template: 'portfolios/show.html.erb',
-               locals: {invoice: @portfolio}
+               template: 'portfolios/portfolio_pdf.html.erb',
+               locals: {invoice: @portfolios }
       end
     end
   end

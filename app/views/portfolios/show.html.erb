@@ -1,22 +1,24 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
+<h2>
   <%= @portfolio.title %>
-</p>
+</h2>
+
+<%= link_to 'Get PDF',  portfolios_path(format: :pdf ), class: 'btn btn-primary' %>
+
+<hr>
 
 <p>
-  <strong>Description:</strong>
   <%= @portfolio.description %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @portfolio.user_id %>
+  <strong>
+    Required Skills
+  </strong>
+</p>
+<p>
+  <%= get_portfolio_skills(@portfolio.project) %>
 </p>
 
 <hr>
 
-<%= link_to 'Edit', edit_portfolio_path(@portfolio) %> |
 <%= link_to 'Back', :back %>
-| <%= link_to 'Get PDF file', portfolio_path(format: :pdf )%>

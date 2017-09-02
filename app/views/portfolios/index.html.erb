@@ -1,20 +1,20 @@
-<p id="notice"><%= notice %></p>
-
 <h2>My project's portfolio</h2>
+
+<%= link_to 'Get PDF',  portfolios_path(format: :pdf ), class: 'btn btn-primary' %>
 
 <hr>
 
 <div class="row">
   <% @portfolios.each do |portfolio| %>
-    <div class="col-md-4 portfolio-item">
+    <div class="col-md-4 portfolio-row">
       <h3>
         <%= link_to portfolio.title, portfolio %>
       </h3>
       <p>
-        <%= portfolio.description %>
+        <strong>Required Skills: </strong>
+        <%= get_portfolio_skills(portfolio.project) %>
       </p>
     </div>
   <% end %>
+  <hr>
 </div>
-
-<hr>

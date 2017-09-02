@@ -1,21 +1,23 @@
-<div class="media">
-  <div class="media-left">
-    <a href="#">
-      <% if conversation.originator.avatar.present? %>
-        <%=  image_tag conversation.originator.avatar.url(:thumb) %>
-      <% else %>
-        <img class="media-object" src="http://placehold.it/64x64" alt="...">
-      <% end %>
-    </a>
+<% if conversation.originator.present? %>
+  <div class="media">
+    <div class="media-left">
+      <a href="#">
+        <% if conversation.originator.avatar.present? %>
+          <%=  image_tag conversation.originator.avatar.url(:thumb) %>
+        <% else %>
+          <img class="media-object" src="http://placehold.it/64x64" alt="...">
+        <% end %>
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= conversation.originator.name %> <br>
+        <small><b>Subject: </b><%= conversation.subject %></small><br>
+        <small><b>Date: </b><%=  conversation.messages.last.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small>
+      </h4>
+      <%= truncate conversation.messages.last.body.html_safe, length: 145 %>
+      <br/>
+      <%= link_to "View", conversation_path(conversation)  %>
+    </div>
   </div>
-  <div class="media-body">
-    <h4 class="media-heading">
-      <%= conversation.originator.name %> <br>
-      <small><b>Subject: </b><%= conversation.subject %></small><br>
-      <small><b>Date: </b><%=  conversation.messages.last.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small>
-    </h4>
-    <%= truncate conversation.messages.last.body.html_safe, length: 145 %>
-    <br/>
-    <%= link_to "View", conversation_path(conversation)  %>
-  </div>
-</div>
+<% end %>

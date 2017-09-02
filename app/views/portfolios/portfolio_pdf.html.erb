@@ -1,0 +1,31 @@
+<h2><%= "#{current_user.name} #{current_user.lastname}" %> project's portfolio</h2>
+
+<hr>
+
+<div class="row">
+  <% @portfolios.each do |portfolio| %>
+    <div class="col-md-4 portfolio-item">
+      <h3>
+        <%= portfolio.title %>
+      </h3>
+      <p>
+        <%= portfolio.description %>
+      </p>
+      <p>
+        <strong>
+          Required Skills
+        </strong>
+      </p>
+      <p>
+        <%= get_portfolio_skills(portfolio.project) %>
+      </p>
+
+      <p>
+        <strong>Finish date: </strong>
+        <%= portfolio.created_at.strftime('%a, %d %b %Y') %>
+      </p>
+    </div>
+
+    <hr>
+  <% end %>
+</div>

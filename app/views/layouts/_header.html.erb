@@ -6,7 +6,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="index.html"></a>
+    <a class="navbar-brand" href="/projects">Comillas v1.0</a>
   </div>
   <!-- /.navbar-header -->
 
@@ -52,6 +52,13 @@
       </ul>
       <!-- /.dropdown-messages -->
     </li>
+    <% else %>
+    <li>
+      <a href="/layouts/about.html.erb"><i class="fa fa-info-circle fa-lg" title="About us"></i></a>
+    </li>
+    <li>
+      <a href="#"><i class="fa fa-comment-o fa-lg" title="Contact us"></i></a>
+    </li>
     <% end %>
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -77,46 +84,54 @@
     <!-- /.dropdown -->
   </ul>
   <!-- /.navbar-top-links -->
-
+  <% if user_signed_in? %>
     <div class="navbar-default sidebar" role="navigation">
       <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
-          <% if user_signed_in? %>
-            <% if current_user.is_student? %>
-              <li>
-                <a href="/projects"><i class="fa fa-product-hunt fa-fw"></i> Available Projects</a>
-              </li>
-              <li>
-                <a href="/portfolios"><i class="fa fa-tasks fa-fw"></i> My portafolio</a>
-              </li>
-            <% else %>
-              <li>
-                <a href="/students"><i class="fa fa-users fa-fw"></i> Available students</a>
-              </li>
-              <li>
-                <%= link_to new_search_path do %>
-                  <i class="fa fa-search"></i>
-                   Search for students
-                <% end %>
-              </li>
-              <li>
-                <a data-toggle="collapse" href="#collapse1">
-                  <i class="fa fa-product-hunt fa-fw"></i> My Projects<span class="fa arrow"></span></a>
-                <ul id="collapse1" class="nav nav-second-level panel-collapse collapse">
-                  <li>
-                    <%= link_to 'Available Projects', projects_path(type: 'available') %>
-                  </li>
-                  <li>
-                    <%= link_to 'Current Projects', projects_path(type: 'current') %>
-                  </li>
-                  <li>
-                    <%= link_to 'Finished Projects', projects_path(type: 'finished') %>
-                  </li>
-                </ul>
-                <!-- /.nav-second-level -->
-              </li>
-              </li>
-            <% end %>
+          <% if current_user.is_student? %>
+            <li>
+              <a href="/projects"><i class="fa fa-product-hunt fa-fw"></i> Available Projects</a>
+            </li>
+            <li>
+              <!--<a href="/portfolios"><i class="fa fa-tasks fa-fw"></i> My portafolio</a>-->
+              <a data-toggle="collapse" href="#collapse1">
+                <i class="fa fa-tasks fa-fw"></i> Portafolio<span class="fa arrow"></span></a>
+              <ul id="collapse1" class="nav nav-second-level panel-collapse collapse">
+                <li>
+                  <%= link_to 'My in progress projects', in_progress_projects_path %>
+                </li>
+                <li>
+                  <a href="/portfolios"> My portafolio</a>
+                </li>
+              </ul>
+            </li>
+          <% else %>
+            <li>
+              <a href="/students"><i class="fa fa-users fa-fw"></i> Available students</a>
+            </li>
+            <li>
+              <%= link_to new_search_path do %>
+                <i class="fa fa-search"></i>
+                 Search for students
+              <% end %>
+            </li>
+            <li>
+              <a data-toggle="collapse" href="#collapse1">
+                <i class="fa fa-product-hunt fa-fw"></i> My Projects<span class="fa arrow"></span></a>
+              <ul id="collapse1" class="nav nav-second-level panel-collapse collapse">
+                <li>
+                  <%= link_to 'Available Projects', projects_path(type: 'available') %>
+                </li>
+                <li>
+                  <%= link_to 'Current Projects', projects_path(type: 'current') %>
+                </li>
+                <li>
+                  <%= link_to 'Finished Projects', projects_path(type: 'finished') %>
+                </li>
+              </ul>
+              <!-- /.nav-second-level -->
+            </li>
+            </li>
           <% end %>
           <li>
             <a href="#"><i class="fa fa-comment-o"></i> Contact support</a>
@@ -129,4 +144,5 @@
       <!-- /.sidebar-collapse -->
     </div>
     <!-- /.navbar-static-side -->
+  <% end %>
 </nav>

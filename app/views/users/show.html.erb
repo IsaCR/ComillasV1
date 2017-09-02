@@ -12,7 +12,7 @@
 <% if @user.avatar.present? %>
   <%= image_tag(@user.avatar.url(:medium), class:'img-responsive')%>
 <% else %>
-  <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+  <%= image_tag 'no-image-found', class:'img-responsive' %>
 <% end %>
 <h3>
   <%= @user.name + " " + @user.lastname %>
@@ -40,7 +40,7 @@ Timing <%= rating_for @user, 'timing', disable_after_rate: true%>
   <br/>
   <div class="row">
     <% portfolios.each do |portfolio| %>
-      <div class="col-md-4 portfolio-item">
+      <div class="col-md-4 portfolio-row">
         <h3>
           <%= link_to portfolio.title, portfolio %>
         </h3>

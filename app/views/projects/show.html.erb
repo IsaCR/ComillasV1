@@ -1,9 +1,16 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
+<h2>
   <%= @project.title %>
-</p>
+</h2>
+<h4>
+  <%= @project.user.name %>
+</h4>
+<% if can_apply? %>
+  <%= link_to 'Apply', apply_path(p_id: @project), class: 'btn btn-primary' %>
+<% end %>
+<% if can_conclude?%>
+  <%= link_to 'Conclude project', conclude_project_path(p_id: @project.id), class: 'btn btn-primary' %>
+<% end %>
+<hr/>
 
 <p>
   <strong>Description:</strong>
@@ -14,35 +21,25 @@
   <strong>Required skills:</strong>
 </p>
 
-<% project_skills(@project.id).each do |skill| %>
-  <p>
-    <%= skill.description %>
-  </p>
-<% end %>
+<p>
+  <%= project_skills(@project) %>
+</p>
 
 <br/>
 <% if @project.image.present? %>
   <%= image_tag @project.image.url(:thumb) %>
 <% end %>
-<br/>
 
-<% if can_apply? %>
-  <%= link_to 'Apply', apply_path(p_id: @project) %> |
-<% elsif can_conclude?%>
-  <%= link_to 'Conclude project', conclude_project_path(p_id: @project.id) %> |
-<% elsif can_edit? %>
-  <%= link_to 'Edit', edit_project_path(@project) %> |
-<% end %>
-
-<%= link_to 'Back', :back %>
-
-<br/>
 <hr/>
 <% if @project.user_id == current_user.id && @project.interested_students.present? %>
   <h2>Interested students</h2>
   <br/>
-
   <%= render "users/users_view", users: interested_students(@project.interested_students), project: @project %>
-
+  <hr/>
 <% end %>
+
+<% if can_edit? %>
+  <%= link_to 'Edit', edit_project_path(@project) %> |
+<% end %>
+<%= link_to 'Back', :back %>
 

@@ -37,4 +37,5 @@ Rails.application.routes.draw do
   get 'students' => 'users#get_students'
   get 'user' => 'users#show'
   get 'conclude_project' => 'projects#conclude_project'
+  get 'in_progress_projects' => 'projects#my_current_project'
 end

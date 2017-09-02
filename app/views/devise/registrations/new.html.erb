@@ -1,22 +1,33 @@
 <!--<h2>Create a Free Client Account</h2>-->
 
-<div class="col-lg-1  text-left">
+<div class="col-lg-2  text-left">
 </div>
 
-<div class="col-lg-8  text-left">
+<div class="col-lg-8  text-left" id="new_regitration">
   <div class="o-signup-form-labels eo-tabset">
     <ul class="nav nav-tabs nav-justified">
-      <li class="nav-item">
-        <%= link_to 'Student SingUp', signup_as_path(singup_as: 'student' ), class: "nav-link active", id: "home-tab", role: "tab" %>
+      <li class="nav-item <%=  %>" >
+        <%= link_to 'Student SingUp', signup_as_path(singup_as: 'student' ), id: 'student' %>
       </li>
-      <li class="nav-item" role="presentation">
-        <%= link_to 'Company SignUp', signup_as_path(singup_as: 'company') %>
+      <li class="nav-item %>">
+        <%= link_to 'Company SignUp', signup_as_path(singup_as: 'company'),  id: 'company' %>
       </li>
     </ul>
   </div>
-
-
-  <%= render 'devise/shared/student_signup_form', type_of_user: params[:type_of_user] %>
-
-  <%= render 'devise/shared/links' %>
+  <div id="registration-form" role="presentation" >
+    <%= render 'devise/shared/student_signup_form', type_of_user: params[:type_of_user] %>
+    <%= render 'devise/shared/links' %>
+  </div>
 </div>
+
+<script>
+  $("#student").on('click',function(){
+//    $("#student").parent().toggleClass('active');
+//    $("#student").parent().siblings().removeClass('active');
+
+  });
+  $("#company").on('click',function(){
+//    $("#company").parent().toggleClass('active');
+//    $("#company").parent().siblings().removeClass('active');
+  });
+</script>
