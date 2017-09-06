@@ -38,4 +38,6 @@ Rails.application.routes.draw do
   get 'user' => 'users#show'
   get 'conclude_project' => 'projects#conclude_project'
   get 'in_progress_projects' => 'projects#my_current_project'
+  get 'contact_support' => 'conversations#contact_support'
+  get 'about_us' => 'about_us#index'
 end

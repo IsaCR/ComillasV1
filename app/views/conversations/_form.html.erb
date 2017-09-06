@@ -1,8 +1,9 @@
 <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>
   <div class="form-group">
-    <% if @recipient %>
+    <% if @recipient || @support %>
+      <% recipient_id = @support ? @support.id : @recipient.id %>
       <%= f.select(:recipients, User.all.collect {|p| [ p.name, p.id ] },
-                   {selected: @recipient.id},
+                   {selected: recipient_id },
                    { multiple: true , style: 'visibility: hidden'})%>
     <% else %>
       <%= f.label :recipients %>

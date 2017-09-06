@@ -3,6 +3,11 @@
 <hr>
 
 <div class="row">
+  <% if @message %>
+    <h2>
+      <%= @message %>
+    </h2>
+  <% end %>
   <% @projects.each do |project| %>
     <div class="col-md-4 portfolio-item">
       <% if project.image.present? %>

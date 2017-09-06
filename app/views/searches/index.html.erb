@@ -1,7 +1,11 @@
 <div class="row">
   <h2>Students</h2>
-
   <hr>
+  <% if @message %>
+    <h2>
+      <%= @message %>
+    </h2>
+  <% end %>
   <% @result.each do |user| %>
     <div class="col-md-4 portfolio-item">
       <a href="#">
