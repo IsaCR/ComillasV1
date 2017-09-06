@@ -4,6 +4,7 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       @users = User.where(is_student: true).paginate(page: params[:page], per_page: 9)
+      @message = 'No available students to show' if @users.empty? 
       render :index
     end
   end

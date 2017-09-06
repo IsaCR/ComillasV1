@@ -1,7 +1,6 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
-
-  <% if type_of_user == 'student' %>
+  <% if $type_of_user == 'student' %>
     <div class="field">
       <%= f.label :name, autofocus: true  %><br />
       <%= f.text_field :name %>
@@ -51,7 +50,7 @@
 
   <br/>
 
-  <% if type_of_user == 'student' %>
+  <% if $type_of_user == 'student' %>
     <div>
       <%= f.collection_check_boxes(:skill_ids, Skill.all, :id, :description) %>
     </div>

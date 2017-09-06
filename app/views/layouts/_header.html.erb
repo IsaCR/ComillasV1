@@ -54,10 +54,15 @@
     </li>
     <% else %>
     <li>
-      <a href="/layouts/about.html.erb"><i class="fa fa-info-circle fa-lg" title="About us"></i></a>
+    <%= link_to about_us_path, title: "About us" do %>
+      <i class="fa fa-info-circle fa-fw"></i>
+    <% end %>
     </li>
     <li>
-      <a href="#"><i class="fa fa-comment-o fa-lg" title="Contact us"></i></a>
+    <%= link_to contact_support_path, title: "Contact us" do %>
+      <i class="fa fa-comment-o"></i>
+    <% end %>
+      <!-- <a href="#"><i class="fa fa-comment-o fa-lg" title="Contact us"></i></a> -->
     </li>
     <% end %>
     <li class="dropdown">
@@ -134,10 +139,16 @@
             </li>
           <% end %>
           <li>
-            <a href="#"><i class="fa fa-comment-o"></i> Contact support</a>
+            <%= link_to contact_support_path do %>
+              <i class="fa fa-comment-o"></i>
+               Contact support
+            <% end %>
           </li>
           <li>
-            <a href="#"><i class="fa fa-info-circle fa-fw"></i>  About Us</a>
+            <%= link_to about_us_path do %>
+              <i class="fa fa-info-circle fa-fw"></i>
+               About Us
+            <% end %>
           </li>
         </ul>
       </div>

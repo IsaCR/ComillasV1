@@ -1,4 +1,5 @@
 class ConversationsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:contact_support]
   def new
   end
 
@@ -60,6 +61,10 @@ class ConversationsController < ApplicationController
     else
       redirect_to root_path
     end
+  end
+
+  def contact_support
+    @support = User.where(email: 'isagonzacr@gmail.com').first
   end
 
   private

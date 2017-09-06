@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
       @projects = @projects.paginate(page: params[:page], per_page: 9)
     else
       @projects = projects_by_type(params[:type])
-      flash[:notice] = 'No projects to show' if @projects.empty?
+      @message = 'No projects to show' if @projects.empty?
     end
   end
 
