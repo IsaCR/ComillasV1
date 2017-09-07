@@ -2,7 +2,9 @@
   <%= @portfolio.title %>
 </h2>
 
-<%= link_to 'Get PDF',  portfolios_path(format: :pdf ), class: 'btn btn-primary' %>
+<% if current_user.is_student? %>
+  <%= link_to 'Get PDF',  portfolios_path(format: :pdf ), class: 'btn btn-primary' %>
+<% end %>
 
 <hr>
 

@@ -26,7 +26,9 @@
 
   <br/>
 
-  <%= image_tag current_user.avatar.url(:medium) %>
+  <% if current_user.avatar.present? %>
+    <%= image_tag current_user.avatar.url(:medium) %>
+  <% end %>
 
   <br/>
 

@@ -4,7 +4,7 @@
     <%= link_to "Back", :back %>
   </div>
 
-  <div class="col-md-7 text-right">
+  <div class="col-md-9 text-right">
     <% if conversation.is_trashed?(current_user) %>
       <%= link_to untrash_conversation_path(conversation), method: :post do %>
         <i class="fa fa-check  fa-2x" aria-hidden="true"></i>
@@ -16,7 +16,7 @@
     <% end %>
   </div>
 
-  <div class="col-md-8">
+  <div class="col-md-10">
     <div class="panel panel-default">
       <div class="panel-body">
         <%= render partial: 'messages' %>
