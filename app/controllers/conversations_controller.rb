@@ -1,5 +1,6 @@
 class ConversationsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:contact_support]
+  skip_before_action :authenticate_user!, only: [:contact_support, :create]
+
   def new
   end
 
@@ -12,12 +13,18 @@ class ConversationsController < ApplicationController
 
 
     recipients = User.where(id: conversation_params[:recipients])
-    conversation = current_user.send_message(recipients,
+    user = current_user ? current_user : User.where(email: 'isagonzacr@gmail.com').first
+    conversation = user.send_message(recipients,
                                              body,
                                              conversation_params[:subject]
     ).conversation
     flash[:success] = "Your message was successfully sent!"
-    redirect_to conversation_path(conversation)
+    if user_signed_in?
+      redirect_to conversation_path(conversation)
+    else
+      redirect_to root_path
+    end
+
   end
 
   def show
